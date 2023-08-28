@@ -1,0 +1,9 @@
+name = "ManualArtifactDownload"
+uuid = "0589915e-e885-457f-b7a7-7d4095fcef95"
+authors = ["Daniel Matz <daniel.a.matz@nasa.gov>"]
+version = "0.1.0"
+
+[deps]
+Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
