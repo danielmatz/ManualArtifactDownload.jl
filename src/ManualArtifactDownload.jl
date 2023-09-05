@@ -47,7 +47,13 @@ function download_artifact(; url::String, tarball_hash::String, tree_hash::SHA1)
             @error "tree hash of download does not match" expected = tree_hash got = hash
             error("tree hash of download does not match")
         end
-        cp(unpack_dest, artifact_path(tree_hash))
+
+        # Sometimes the artifact directory hasn't been created, yet,
+        # which causes the copy to fail. Let's make sure it exists.
+        install_dest = artifact_path(tree_hash)
+        mkpath(dirname(install_dest))
+
+        cp(unpack_dest, install_dest)
     end
 end
 
