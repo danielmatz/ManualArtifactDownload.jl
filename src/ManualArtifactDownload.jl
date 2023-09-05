@@ -61,11 +61,15 @@ function download_artifacts(artifacts_toml::String)
     artifacts = select_downloadable_artifacts(artifacts_toml)
     for (name, meta) in artifacts
         for download_data in meta["download"]
-            download_artifact(
-                url = download_data["url"],
-                tarball_hash = download_data["sha256"],
-                tree_hash = SHA1(meta["git-tree-sha1"]),
-            )
+            url = download_data["url"]
+            # We only know how to download with `scp`
+            if startswith(url, "scp://")
+                download_artifact(
+                    url = url,
+                    tarball_hash = download_data["sha256"],
+                    tree_hash = SHA1(meta["git-tree-sha1"]),
+                )
+            end
         end
     end
 end
