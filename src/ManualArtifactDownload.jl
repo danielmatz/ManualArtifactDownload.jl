@@ -98,7 +98,7 @@ Downloads and installs any artifacts in the TOML file at the path
 `artifacts_toml` that are appropriate for the current system.
 """
 function download_artifacts(artifacts_toml::String)
-    artifacts = select_downloadable_artifacts(artifacts_toml)
+    artifacts = select_downloadable_artifacts(expanduser(artifacts_toml))
     for (name, meta) in artifacts
         for download_data in meta["download"]
             url = download_data["url"]
